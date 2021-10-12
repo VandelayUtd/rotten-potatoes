@@ -1,3 +1,0 @@
-class MovieReview < ApplicationRecord
-    
-end
