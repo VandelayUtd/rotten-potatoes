@@ -9,8 +9,8 @@ class ReviewsController < ApplicationController
     def create
         binding.pry
         @review = Review.new(review_params)
-        if @review.save 
-            
+        if @review.save
+            redirect_to movie_path(@review.movie)
         end
     end
 

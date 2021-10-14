@@ -1,4 +1,14 @@
+<%= flash[:alert] %>
+
 <h2><%= @movie.title %></h2>
+<% @movie.reviews.each do |review| %>
+    <%= review.user.username %> <br>
+    <%= review.rating %> <br>
+    <%= review.content %> <br>
+<% end %>
+
+
+
 
 <%= link_to "add another movie", new_user_movie_path(@user) %> <br>
 <%= link_to "leave a review", new_user_movie_review_path(@user, @movie) %>

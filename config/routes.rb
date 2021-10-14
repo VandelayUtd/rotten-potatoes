@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # get "/logout", to: "sessions#destroy"
   delete "/logout", to: "sessions#destroy"
   get "/signup", to: "users#new"
+  post "/movies/:id", to: "movies#show"
+
   # get "/user/:id", to: "users#show"
-  
   resources :reviews
   resources :movies do 
     resources :reviews 

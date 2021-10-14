@@ -14,14 +14,24 @@ class MoviesController < ApplicationController
             else 
                 render "new"
             end
-        else
+        else  
             movie = Movie.find_by(title: movie_params[:title])
+            redirect_to movie_path(movie), alert: "movie already exists, add below"
+            
+            
+            
+            # current_user.movies << movie
+            # watched = movie_params[:user_movies_attributes]["0"][:watched]
+            # current_user.user_movies.last.watched = true if watched == "1"
+            # binding.pry
+            # redirect_to movie_path(movie)
         end
     end
 
-    def show 
+    def show
         @movie = Movie.find(params[:id])
         @user = current_user
+        @movie.user_movies.build
     end
 
     private 
