@@ -8,8 +8,14 @@ Rails.application.routes.draw do
   # get "/user/:id", to: "users#show"
   
   resources :reviews
-  resources :movies
-  resources :users 
+  resources :movies do 
+    resources :reviews 
+  end
+  resources :users do 
+    resources :movies do 
+      resources :reviews
+    end
+  end
 
 
   root "static#home"

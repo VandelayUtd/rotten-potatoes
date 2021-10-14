@@ -1,8 +1,12 @@
 <%= form_for @movie do |f| %>
+   
     <%= f.label :title %>
     <%= f.text_field :title %>
-    <%= f.label "check if already seen", :watched %>
-    <%= f.check_box :watched %>
+    <%= f.fields_for :user_movies do |form| %>
+        <%= form.hidden_field :user_id, value: @id %>
+        <%= form.label "check if already seen", :watched %>
+        <%= form.check_box :watched %>
+    <% end %>
     <%= f.submit %>
 <% end %>
     

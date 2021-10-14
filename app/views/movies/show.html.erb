@@ -1,3 +1,5 @@
 <h2><%= @movie.title %></h2>
-<%= link_to "add another movie", new_movie_path %> <br>
-<%= link_to "leave a review", new_review_path %>
+
+<%= link_to "add another movie", new_user_movie_path(@user) %> <br>
+<%= link_to "leave a review", new_user_movie_review_path(@user, @movie) %>
+

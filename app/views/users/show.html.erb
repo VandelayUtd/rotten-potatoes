@@ -1,9 +1,9 @@
 <h1><%= @user.name %></h1>
 
-<h3>Your Movie List</h3>
+<h2>Your Movie List</h2>
 <% @user.movies.each do |movie| %>
-    <%= link_to movie.title, movie_path(movie) %>
+    <h3><%= link_to movie.title, movie_path(movie) %> </h3><br>
 <% end%>
 
-<%= link_to "Add Movies to your watchlist", new_movie_path %>
+<%= link_to "Add Movies to your watchlist", new_user_movie_path(@user)%>
 <%= link_to "Log out", logout_path, method: :delete %>

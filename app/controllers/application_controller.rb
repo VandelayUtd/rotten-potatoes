@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
 
+    before_action :verify_user
 
     private 
+    def verify_user
+        redirect_to "/" if !logged_in
+    end
 
     
     def current_user 

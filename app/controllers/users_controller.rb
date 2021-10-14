@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+    skip_before_action only: [:new, :create]
 
-    def new 
+    def new
+        redirect_to user_path(current_user) if logged_in
         @user = User.new
     end
 
