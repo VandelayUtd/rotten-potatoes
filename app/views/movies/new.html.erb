@@ -1,3 +1,4 @@
+<h3>Add a Movie to the list</h3>
 <%= form_for @movie do |f| %>
    
     <%= f.label :title %>
@@ -9,4 +10,11 @@
     <% end %>
     <%= f.submit %>
 <% end %>
+    
+
+<h3>Select a Movie Below</h3>
+    <% Movie.sorted_by_rating.each do |movie|  %>
+        <%= movie.title %>
+    <% end %>
+
     

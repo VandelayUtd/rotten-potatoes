@@ -7,11 +7,18 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        binding.pry
         @review = Review.new(review_params)
         if @review.save
             redirect_to movie_path(@review.movie)
         end
+    end
+
+    def edit 
+        @review = Review.find(params[:id])
+    end
+
+    def update 
+        
     end
 
     private 

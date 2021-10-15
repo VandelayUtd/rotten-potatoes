@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
     def show
         @movie = Movie.find(params[:id])
         @user = current_user
-        @movie.user_movies.build
+        @user_movie = @movie.user_movies.build
     end
 
     private 

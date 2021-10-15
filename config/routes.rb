@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   # get "/logout", to: "sessions#destroy"
   delete "/logout", to: "sessions#destroy"
   get "/signup", to: "users#new"
-  post "/movies/:id", to: "movies#show"
+  # get "/add_movie", to: "user_movies#new"
+  # post "/add_movie", to: "user_movies#create"
+  # delete "/remove_movie", to: "user_movies#destroy"
+  get "/edit_list", to: "user_movies#edit"
+  patch "/edit_list", to: "user_movies#update" 
+
+  resources :user_movies, only: [:create, :edit, :update, :destroy] 
 
   # get "/user/:id", to: "users#show"
   resources :reviews
