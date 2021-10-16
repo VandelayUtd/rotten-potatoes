@@ -19,12 +19,12 @@ class Movie < ApplicationRecord
         ratings = self.reviews.map {|r| r.rating }
         ratings.sum / ratings.size
         else   
-            nil 
+            0
         end
     end
 
     def self.sorted_by_rating
-        self.all.sort_by{|movie| movie.rating_avg}
+        self.all.sort_by{|movie| movie.rating_avg}.reverse
     end
 
 end

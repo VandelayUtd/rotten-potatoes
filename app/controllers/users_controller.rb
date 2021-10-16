@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action only: [:new, :create]
+    skip_before_action :verify_user, only: [:new, :create]
 
     def new
         redirect_to user_path(current_user) if logged_in

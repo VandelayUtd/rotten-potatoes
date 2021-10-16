@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
         @movie = Movie.new
         @movie.user_movies.build
         @id = session[:user_id]
+        flash[:notice] = "no reviews"
     end
 
     def create 

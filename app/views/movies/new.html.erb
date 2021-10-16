@@ -14,7 +14,16 @@
 
 <h3>Select a Movie Below</h3>
     <% Movie.sorted_by_rating.each do |movie|  %>
-        <%= movie.title %>
+    <ul>
+        <li> 
+            <strong><%= link_to movie.title, movie_path(movie) %></strong>
+            <% if movie.rating_avg > 0%> 
+            <%= "#{movie.rating_avg}%" %>
+            <% else %>
+            <%= flash[:notice]%>
+            <% end %> 
+        </li>
+    </ul>
     <% end %>
 
     
