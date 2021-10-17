@@ -1,7 +1,7 @@
 <h1><%= @user.name %></h1>
 
 <h2>Your Movie List</h2>
-<% @user.movies.each do |movie| %>
+<% @user.movies.sorted_by_rating.each do |movie| %>
     <ul>
         <li><%= link_to movie.title, movie_path(movie)%> 
         <% if @user.user_movies.watched.find_by(movie_id: movie.id) %>

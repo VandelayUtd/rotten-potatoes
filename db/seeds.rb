@@ -8,4 +8,16 @@
 
 User.create(name: "Jerry", username: "iheartpez", password_digest: "pez")
 
+Movie.create(title: "Night Of The Living Dead" )
+Movie.create(title: "Evil Dead" )
+Movie.create(title: "Evil Dead 2" )
+Movie.create(title: "The Lost Boys" )
+Movie.create(title: "American Werewolf in London" )
+Movie.create(title: "The Craft" )
+Movie.create(title: "Halloween" )
+Movie.create(title: "Frankenstein" )
+Movie.create(title: "They Live" )
+Movie.create(title: "Rocky Horror Picture Show" )
+Movie.create(title: "Hellboy")
+
 

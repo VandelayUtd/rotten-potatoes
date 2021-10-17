@@ -15,10 +15,14 @@ class ReviewsController < ApplicationController
 
     def edit 
         @review = Review.find(params[:id])
+        @movie = Movie.find(params[:movie_id])
+        @user = current_user
     end
 
     def update 
-        
+        @review = Review.find(params[:id])
+        @review.update(review_params)
+        redirect_to movie_path(@review.movie)
     end
 
     private 

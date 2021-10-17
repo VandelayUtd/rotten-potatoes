@@ -6,7 +6,10 @@
     <div>
         <strong><%= review.user.username %>:</strong>
         <%= review.rating %>%<br>
-        <%= review.content %><br> 
+        <%= review.content %><br>
+        <% if review.user_id == @user.id%>
+            <%= link_to "Edit Review", edit_user_movie_review_path(@user, @movie, review) %>
+        <% end %> 
     </div><br>
 <% end %> 
 
@@ -21,5 +24,7 @@
 
 
 <%= link_to "add another movie", new_user_movie_path(@user) %> <br>
-<%= link_to "leave a review", new_user_movie_review_path(@user, @movie) %>
-
+<% user_movie = UserMovie.find_by(movie_id: @movie.id, user_id: @user.id) %>
+<% if  user_movie && user_movie.watched %>
+    <%= link_to "leave a review", new_user_movie_review_path(@user, @movie) %>
+<% end %>

@@ -12,8 +12,11 @@
 
   <body>
     <br>
-    <%= link_to "Home", root_path %>
+    <%= link_to "Watchlist", root_path %>
+    <%= link_to "Movies", movies_path %>
+    
     <br>
-    <%= yield %>
+    <%= yield %> <br>
+    <%= link_to "Logout", logout_path, method: :delete %>
   </body>
 </html>
