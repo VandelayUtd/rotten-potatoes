@@ -14,7 +14,7 @@
 <% end %> 
 
 
-<%= form_for @user_movie do |f| %>
+<%= form_for @new_user_movie do |f| %>
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.hidden_field :movie_id, value: @movie.id %>
     <%= f.label :watched %>
@@ -22,9 +22,20 @@
     <%= f.submit "add movie to list" %>
 <% end %>
 
+<%= form_with model: @user_movie, url: edit_list_path, method: :patch do |f| %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :movie_id, value: @movie.id %>
+    <%= f.label :watched %>
+    <%= f.check_box :watched %>
+    <%= f.submit "Update" %>
+<% end %>
+
+
 
 <%= link_to "add another movie", new_user_movie_path(@user) %> <br>
+
+
 <% user_movie = UserMovie.find_by(movie_id: @movie.id, user_id: @user.id) %>
-<% if  user_movie && user_movie.watched %>
+<% if  user_movie && user_movie.watched  %>
     <%= link_to "leave a review", new_user_movie_review_path(@user, @movie) %>
 <% end %>

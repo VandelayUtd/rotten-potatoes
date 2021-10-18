@@ -1,11 +1,6 @@
 <% @user_movies.each do |movie| %>
 <ul>
     <li><strong><%= movie.user_movie_title %></strong>
-    <%= form_for movie do |f| %>
-        <%= f.label :watched %>
-        <%= f.check_box :watched %>
-        <%= f.submit "update" %>
-    <% end %>
     <%= button_to "Delete", movie, method: :delete %>
     </li>
 </ul>

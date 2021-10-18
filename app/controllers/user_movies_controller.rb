@@ -11,15 +11,16 @@ class UserMoviesController < ApplicationController
     end
 
     def edit
-        @user_movies = current_user.user_movies   
+        @user_movie = current_user.user_movies.find_by(movie_id: params[:id])
+        @user_movies = current_user.user_movies
     end
 
     def update
-        @user_movies = current_user.user_movies
-        @user_movies.each do |movie| 
-            movie.update(user_movie_params) 
-        end
-        redirect_to "/edit_list"
+        # binding.pry
+        @user_movie = current_user.user_movies.find_by(movie_id: params[:user_movie][:movie_id])
+        # binding.pry
+        @user_movie.update(user_movie_params)
+        redirect_to user_path(current_user)
     end
 
     def destroy 

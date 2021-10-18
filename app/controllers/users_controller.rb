@@ -12,7 +12,8 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else 
-            render "new"
+            flash[:alert] = @user.errors.full_messages.join( ", ")
+            redirect_to signup_path
         end
     end
 

@@ -4,7 +4,7 @@
 <% @user.movies.sorted_by_rating.each do |movie| %>
     <ul>
         <li><%= link_to movie.title, movie_path(movie)%> 
-        <% if @user.user_movies.watched.find_by(movie_id: movie.id) %>
+        <% if @user.user_movies.has_watched.find_by(movie_id: movie.id) %>
         &#9989;
         <% end %> </li>
     </ul>
