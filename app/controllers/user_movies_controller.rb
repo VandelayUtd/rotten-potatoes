@@ -1,9 +1,5 @@
 class UserMoviesController < ApplicationController
 
-    # def new
-    #     @user_movie = UserMovie.new
-    # end
-
     def create
         @user_movie = UserMovie.new(user_movie_params)
         @user_movie.save 
@@ -16,9 +12,7 @@ class UserMoviesController < ApplicationController
     end
 
     def update
-        # binding.pry
         @user_movie = current_user.user_movies.find_by(movie_id: params[:user_movie][:movie_id])
-        # binding.pry
         @user_movie.update(user_movie_params)
         redirect_to user_path(current_user)
     end

@@ -13,23 +13,17 @@
     </div><br>
 <% end %> 
 
-
-<%= form_for @new_user_movie do |f| %>
-    <%= f.hidden_field :user_id, value: @user.id %>
-    <%= f.hidden_field :movie_id, value: @movie.id %>
-    <%= f.label :watched %>
-    <%= f.check_box :watched %>
-    <%= f.submit "add movie to list" %>
+<% if @user.user_movies.find_by(movie_id: @movie.id) %>
+    <%= form_with model: @user_movie, url: edit_list_path, method: :patch do |f| %>
+        <%= render :partial => "/user_movies/form", :locals => {f: f}%>
+        <%= f.submit "Update" %>
+    <% end %>
+<% else %>
+    <%= form_for @new_user_movie do |f| %>
+        <%= render :partial => "/user_movies/form", :locals => {f: f}%>
+        <%= f.submit "add movie to list" %>
+    <% end %>
 <% end %>
-
-<%= form_with model: @user_movie, url: edit_list_path, method: :patch do |f| %>
-    <%= f.hidden_field :user_id, value: @user.id %>
-    <%= f.hidden_field :movie_id, value: @movie.id %>
-    <%= f.label :watched %>
-    <%= f.check_box :watched %>
-    <%= f.submit "Update" %>
-<% end %>
-
 
 
 <%= link_to "add another movie", new_user_movie_path(@user) %> <br>
