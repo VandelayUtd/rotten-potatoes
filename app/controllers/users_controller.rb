@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
     skip_before_action :verify_user, only: [:new, :create]
+    # before_action :require_login
+    # skip_before_action :require_login, only: [:new, :create]
+    
 
     def new
-        redirect_to user_path(current_user) if logged_in
+        redirect_to user_path(current_user) if logged_in?
         @user = User.new
     end
 
@@ -19,6 +22,7 @@ class UsersController < ApplicationController
 
     def show 
         @user = User.find_by(id: params[:id])
+        redirect_to "/" if @user.id != current_user.id
     end
 
     private 
@@ -26,5 +30,9 @@ class UsersController < ApplicationController
     def user_params 
         params.require(:user).permit(:name, :username, :password)
     end
+
+    # def require_login
+    #     return head(:forbidden) unless session[:user_id] == current_user.id
+    # end
 
 end

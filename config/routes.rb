@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/edit_list", to: "user_movies#edit"
   patch "/edit_list", to: "user_movies#update" 
 
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
+
   resources :user_movies, only: [:create, :edit, :update, :destroy] 
 
   # get "/user/:id", to: "users#show"
