@@ -1,6 +1,8 @@
 class ReviewsController < ApplicationController
 
-    def new 
+    def new
+
+        # redirect_to "/" if params[:user_id] != current_user.id || params[:movie_id] != @movie.id
         @review = Review.new
         @movie = Movie.find(params[:movie_id])
         @user = current_user

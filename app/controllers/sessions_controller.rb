@@ -10,11 +10,11 @@ class SessionsController < ApplicationController
     end
 
     def create 
-           
-        binding.pry 
         if auth_hash
-            @user = User.find_or_create_from_auth_hash(auth_hash)
-            self.current_user = @user
+            @user = User.create_by_github(auth_hash)
+            @user.name = auth_hash[:info][:name]
+            @user.save
+            session[:user_id] = @user.id
         else 
             @user = User.find_by(username: params[:username])
             authenticated = user.try(:authenticate, params[:password])
@@ -35,5 +35,6 @@ class SessionsController < ApplicationController
     def auth_hash
         request.env['omniauth.auth']
     end
+    
 
 end
