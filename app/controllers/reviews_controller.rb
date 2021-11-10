@@ -1,8 +1,6 @@
 class ReviewsController < ApplicationController
 
-    def new
-
-        # redirect_to "/" if params[:user_id] != current_user.id || params[:movie_id] != @movie.id
+    def new 
         @review = Review.new
         @movie = Movie.find(params[:movie_id])
         @user = current_user
@@ -15,10 +13,14 @@ class ReviewsController < ApplicationController
         end
     end
 
-    def edit 
-        @review = Review.find(params[:id])
-        @movie = Movie.find(params[:movie_id])
-        @user = current_user
+    def edit
+            @review = Review.find(params[:id])
+            @movie = Movie.find(params[:movie_id])
+            @user = User.find(params[:user_id])
+            if current_user.id != @user.id
+                flash[:unauthorized] = "You can only edit your own reviews"
+                redirect_to movie_path(@movie)
+            end
     end
 
     def update 

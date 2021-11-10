@@ -1,4 +1,5 @@
 <%= flash[:alert] %>
+<h2><%= flash[:unauthorized] %></h2>
 
 <h1><%= @movie.title %></h1>
 <h2>Potatometer: <%= @movie.rating_avg %>%</h2>
@@ -29,7 +30,7 @@
 <%= link_to "add another movie", new_user_movie_path(@user) %> <br>
 
 
-<% user_movie = UserMovie.find_by(movie_id: @movie.id, user_id: @user.id) %>
-<% if  user_movie && user_movie.watched  %>
+
+<% if  @user_movie && @user_movie.watched && !@user.reviews.find_by(movie_id: @user_movie.movie_id) %>
     <%= link_to "leave a review", new_user_movie_review_path(@user, @movie) %>
 <% end %>

@@ -31,6 +31,8 @@ class MoviesController < ApplicationController
         @user = current_user
         @new_user_movie = @movie.user_movies.build
         @user_movie = current_user.user_movies.find_by(movie_id: params[:id])
+        # byebug
+        # redirect_to "/"
     end
 
     private 
